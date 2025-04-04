@@ -10,51 +10,36 @@ import DiceFive from "../assets/five.png";
 import DiceSix from "../assets/six.png";
 
 
-type DiceProps = PropsWithChildren<{
-  imageUrl: ImageSourcePropType
-}>
+const diceImages: Record<number, ImageSourcePropType> = {
+  1: require("../assets/one.png"),
+  2: require("../assets/two.png"),
+  3: require("../assets/three.png"),
+  4: require("../assets/four.png"),
+  5: require("../assets/five.png"),
+  6: require("../assets/six.png"),
+};
 
-const Dice = ({ imageUrl }: DiceProps) => {
-  return (
-    <View>
-      <Image style={{ height: 200, width: 200 }} source={imageUrl} />
-    </View>
-  )
+const randomNumber = () => Math.floor(Math.random() * 6) + 1;
 
-}
-export default function App() {
-  const [diceImage, setDiceImage] = useState<ImageSourcePropType>(DiceFour)
-
-  const rollTheDiceOnTap = () => {
-    let randomNumber = Math.floor(Math.random() * 6) + 1;
-    switch (randomNumber) {
-      case 1:
-        setDiceImage(DiceOne)
-        break;
-      case 2:
-        setDiceImage(DiceTwo)
-        break;
-      case 3:
-        setDiceImage(DiceThree)
-        break;
-      case 4:
-        setDiceImage(DiceFour)
-        break;
-      case 5:
-        setDiceImage(DiceFive)
-        break;
-      case 6:
-        setDiceImage(DiceSix)
-        break;
-      default:
-        setDiceImage(DiceFour)
-        break;
-    }
+const rollDices = () => {
+  let dice1 = randomNumber();
+  let dice2 = randomNumber();
+  while (dice1 === dice2) {
+    dice2 = randomNumber(); // Ensure dice are different
   }
+  return [dice1, dice2];
+}
+
+export default function App() {
+  const [dice, setDice] = useState([1, 2]);
+  const rollTheDiceOnTap = () => {
+    setDice(rollDices());
+  };
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Dice imageUrl={diceImage} />
+        <Image source={diceImages[dice[0]]} style={{ width: 200, height: 200 }} />
+        <Image source={diceImages[dice[1]]} style={{ width: 200, height: 200 }} />
         <TouchableOpacity onPress={rollTheDiceOnTap}><Text style={styles.rollDiceButton}>Roll the Dice</Text></TouchableOpacity>
       </SafeAreaView>
     </View>
