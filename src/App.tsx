@@ -1,6 +1,5 @@
-import React, { PropsWithChildren, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ImageSourcePropType, Pressable, TouchableOpacity, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, ImageSourcePropType, TouchableOpacity, SafeAreaView } from 'react-native';
 
 
 
