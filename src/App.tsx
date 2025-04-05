@@ -2,12 +2,6 @@ import React, { PropsWithChildren, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageSourcePropType, Pressable, TouchableOpacity, SafeAreaView } from 'react-native';
 
-import DiceOne from "../assets/one.png";
-import DiceTwo from "../assets/two.png";
-import DiceThree from "../assets/three.png";
-import DiceFour from "../assets/four.png";
-import DiceFive from "../assets/five.png";
-import DiceSix from "../assets/six.png";
 
 
 const diceImages: Record<number, ImageSourcePropType> = {
